@@ -1,0 +1,78 @@
+<style>
+
+  .card {
+    --borderWidth: 5px;
+    
+    position: relative;
+    border-radius: var(--borderWidth);
+  }
+  .card:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+  }
+  
+  
+  @keyframes animatedgradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+  
+  
+</style>
+
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                {{#each products}}
+               
+                 <div class="col-md-3 p-3">
+                     
+                    <div class="card" style="width: 25rem;height: 40rem;">
+                        
+                        {{!-- <a href="/wishlist" style="color: tomato;    padding-left: 222px; max-height: 2rem;">
+          <span class="glyphicon glyphicon-heart"></span>
+        </a> --}}
+                        <img class="card-img-top"
+                            src="/product-image/{{this.product._id}}.jpg"
+                            alt="Card image cap"
+                            style="height: 20rem;padding: .5rem;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="padding: .5rem;">{{this.product.name}}</h5>
+                            <h4 class="card-text" style="">Rs:{{this.product.Price}}</h4>
+                            <h4 class="card-text" style="">quantity:{{this.quantity}}</h4>
+                        </div>
+                        {{!-- <div class="form-inline my-2 my-lg-0"  style=" 
+    margin-left: 1rem;
+    padding: 7px;"  > 
+                            <button  onclick="addToCart('{{this._id}}')" class="btn btn-primary  " style="padding: 9px;">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</button>
+
+
+                       
+    
+                        </div> --}}
+                    </div> 
+                </div>
+                {{/each}}
+                </div>
+                 
+            </div>
+            
+        </div>
+    </section>

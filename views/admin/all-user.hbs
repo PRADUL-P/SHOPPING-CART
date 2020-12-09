@@ -1,0 +1,72 @@
+<!--<section>
+    <div class="container">
+        <div class="row mt-5">
+            <a href="/admin/add-product" class="btn btn-success ml-auto">Add product</a>
+        </div>
+        <table class="table mt-5  " style="border: 2px solid rgb(15, 13, 153);background-color: #eee;border-spacing: 5px;">
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+table, th, td {
+  border: 2px solid rgb(15, 13, 153);
+  border-collapse: collapse;
+}
+tr:nth-child(even){background-color: cadetblue}
+
+ thead{
+  background-color: #eeff50;
+  color: rgb(0, 0, 0);
+}
+
+</style>
+<style>
+  /*for adding  serial no in the row*/
+  .table {
+    counter-reset: serial-number;  /* Set the serial number counter to 0 */
+  }
+  
+.table td:first-child:before {
+    
+    counter-increment: serial-number;  /* Increment the serial number counter 
+
+    */
+    content: counter(serial-number);  /* Display the counter */
+  }
+</style>
+
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th>Image</th>
+      <th>Edit/Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each users}}
+    <tr>
+     <td></td>
+      <td>{{this.name}}</td>
+      <td>{{this.Email}}</td>
+      <td>{{this.Price}}</td>
+      <td><img style="width: 50px;height:50px" src="/product-image/{{this._id}}.jpg" alt=""></td>
+      <td>
+         <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a>
+        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Sure Want To delete{{this.Name}} ?')">Delete</a>
+       
+        </td>
+    {{/each}}
+    
+  </tbody>
+</table>
+    </div>
+</section>

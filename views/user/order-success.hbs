@@ -1,0 +1,323 @@
+<section>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-12 text-center congrats">
+           <h1 class="text-center">Order placed successfully</h1> 
+                {{!-- <a href="/orders" class="btn btn-primary">view Orders</a>  --}}
+            </div>
+            <img src="https://bit.ly/20qKWK0" style="display:none">
+            {{!-- <div class="card" style="height: 20rem;width: 20rem;align-items: center;"> --}}
+              {{!-- <h2 style="color: lightseagreen;">sdgffdtguhjgyjtky</h2> --}}
+             <div class="wrap" style=" margin: 0 auto;
+        float: none;
+        margin-bottom: 10px; 
+            margin-top: 160px;">
+             <div class="box">
+            {{!-- <button href="#popup1" class="button" style="padding-left: 5px;margin-right: 10px;" >view details</button> --}}
+             <a href="/orders"   class="button"  style="margin-left: 10px;padding-right: 5px;" >view order status</a>
+{{!--          
+	<a class="button" href="#popup1">Let me Pop up</a> --}}
+</div>
+
+{{!-- <div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Here i am</h2>
+		<a class="close" href="#">&times;</a>
+		<div class="content">
+			Thank to pop me out of that button, but now i'm done so you can close this window.
+		</div>
+	</div>
+</div> --}}
+        </div>
+           
+
+
+</section>
+
+<style
+>
+
+.box {
+  width:80%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+  height: 60%;
+}
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+/*
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+*/
+@import url(https://fonts.googleapis.com/css?family=Sigmar+One);
+
+body {
+	
+	color: #fff;
+	overflow: hidden;
+}
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+            margin-top: 160px;
+}
+.congrats {
+	position: absolute;
+	top: 140px;
+	width: 550px;
+	height: 100px;
+	padding: 20px 10px;
+	text-align: center;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+
+h1 {
+	transform-origin: 50% 50%;
+	font-size: 50px;
+	font-family: 'Sigmar One', cursive;
+	cursor: pointer;
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	text-align: center;
+	width: 100%;
+}
+
+.blob {
+	height: 50px;
+	width: 50px;
+	color: #ffcc00;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+	z-index: 1;
+	font-size: 50px;
+	display: none;	
+}
+{{!-- button --}}
+
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #4FD1C5;
+background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+a::before {
+content: '';
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+a:hover::before, a:focus::before {
+  opacity: 1;
+}
+
+a::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+a:hover::after, a:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+</style>
+{{!-- order-sucess  --}}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+{{!-- order end --}}
+<script>
+$(function() {
+	var numberOfStars = 500;
+	
+	for (var i = 0; i < numberOfStars; i++) {
+	  $('.congrats').append('<div class="blob fa fa-star ' + i + '"></div>');
+	}	
+
+	animateText();
+	
+	animateBlobs();
+});
+
+$('.congrats').click(function() {
+	reset();
+	
+	animateText();
+	
+	animateBlobs();
+});
+
+function reset() {
+	$.each($('.blob'), function(i) {
+		TweenMax.set($(this), { x: 0, y: 0, opacity: 1 });
+	});
+	
+	TweenMax.set($('h1'), { scale: 1, opacity: 1, rotation: 0 });
+}
+
+function animateText() {
+		TweenMax.from($('h1'), 0.8, {
+		scale: 0.4,
+		opacity: 0,
+		rotation: 15,
+		ease: Back.easeOut.config(4),
+	});
+}
+	
+function animateBlobs() {
+	
+	var xSeed = _.random(350, 380);
+	var ySeed = _.random(120, 170);
+	
+	$.each($('.blob'), function(i) {
+		var $blob = $(this);
+		var speed = _.random(1, 5);
+		var rotation = _.random(5, 100);
+		var scale = _.random(0.8, 1.5);
+		var x = _.random(-xSeed, xSeed);
+		var y = _.random(-ySeed, ySeed);
+
+		TweenMax.to($blob, speed, {
+			x: x,
+			y: y,
+			ease: Power1.easeOut,
+			opacity: 0,
+			rotation: rotation,
+			scale: scale,
+			onStartParams: [$blob],
+			onStart: function($element) {
+				$element.css('display', 'block');
+			},
+			onCompleteParams: [$blob],
+			onComplete: function($element) {
+				$element.css('display', 'none');
+			}
+		});
+	});
+}</script>

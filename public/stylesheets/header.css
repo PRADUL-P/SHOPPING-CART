@@ -1,0 +1,32 @@
+header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    
+  
+  }
+     .fakeimg {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+  
+    .glow {
+      font-size: 20px;
+      color: #fff;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+  
+
+  .navbar:hover{
+    background-color: chartreuse;
+  }
+ 
+  
+  
+ 

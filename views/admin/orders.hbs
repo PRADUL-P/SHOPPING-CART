@@ -1,0 +1,73 @@
+<section>
+    <div class="container">
+
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Pincode</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Total amount</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>                
+                {{#each orders}}
+                <tr>
+                    
+                    
+                    <td>{{this.date}}</td>
+                    <td>{{this.deliveryDetails.name}}</td>
+                    <td>{{this.deliveryDetails.address}}</td>
+                    <td>{{this.deliveryDetails.pincode}}</td>
+                    <td>{{this.deliveryDetails.mobile}}</td>
+                    <td>Rs.{{this.totalAmount}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                        <a href="/admin/update-order/{{this._id}}" class="btn btn-primary">Update order</a>
+                    </td>
+                </tr>
+                {{/each}}                
+            </tbody>
+        </table>
+
+    </div>
+</section>
+<style>
+ table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+table, th, td {
+  border: 2px solid rgb(15, 13, 153);
+  border-collapse: collapse;
+}
+tr:nth-child(even){background-color: cadetblue}
+
+ thead{
+  background-color: #eeff50;
+  color: rgb(0, 0, 0);
+}
+
+
+  /*for adding  serial no in the row*/
+  .table {
+    counter-reset: serial-number;  /* Set the serial number counter to 0 */
+  }
+  
+.table td:first-child:before {
+    
+    counter-increment: serial-number;  /* Increment the serial number counter 
+
+    */
+    content: counter(serial-number);  /* Display the counter */
+  }
+</style> 

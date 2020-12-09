@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="container mt-5 " style="margin: 85px;    padding-left: 180px;
+    padding-right: 180px;">
+            <h1 class="text-center" >Login</h1>
+        <form action="/login" method="POST" style=" padding: 20px 25px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 4px;">
+
+  {{#if loginErr}}
+        <p class="error" style="background: blanchedalmond;">{{loginErr}}</p>  
+  {{/if}}
+            <div class="form-group">
+                <label>Email address</label>
+                <input type="email" class="form-control" name="Email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label>password</label>
+                <input type="password" class="form-control" name="Password" placeholder="Password">
+            </div>
+            <a href="/signup">create new account ?</a>
+            <button type="submit" class="btn btn-primary float-right">Login</button>
+        </form>
+        </div>
+    </div>
+</div>

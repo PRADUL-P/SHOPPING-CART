@@ -1,0 +1,719 @@
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">    
+<header class="fixed">
+  <nav class="navbar navbar-expand-lg navbar-mainbg">
+        <a class="navbar-brand navbar-logo glow" href="/"> SHOPPING CART</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+				{{#if user}}
+               <li class="nav-item active">
+                    <a class="nav-link glow" href="javascript:void(0);"><i class="fas fa-user-circle" style="color: black;"></i>{{user.Name}}</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/"><i class="far fa-address-book" style="color: black;"></i> PRODUCTS</a>
+                </li>
+				
+                {{else}}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"><i class="far fa-address-book" style="color: black;"></i> PRODUCTS</a>
+                </li> 
+				{{/if}}
+                
+                 {{#if user}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders"><i class="fas fa-shopping-bag" style="color: black;"></i> ORDERS</a>
+                </li>
+               
+                <li class="nav-item">
+                     <a class="nav-link" href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color: black;"></i>CART
+            <span class="badge" id="cart-count" style="margin-top: -40px;background-color: blanchedalmond;color: blue;">{{cartCount}}</span></a>
+                </li>
+                 {{else}}
+                {{/if}}
+                {{#if user}}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt" style="color: black;"></i>Log out</a>  
+              
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link glow login-trigger" href="#" data-target="#login" data-toggle="modal" 
+                    href="/login"><i class="fas fa-sign-in-alt" style="color: black;"></i> Log in</a>  
+              
+                </li>
+                {{/if}}
+                
+            </ul>
+        </div>
+    </nav>
+</header>
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    
+    <div class="modal-content">
+      <div class="modal-body">
+        <button data-dismiss="modal" class="close">&times;</button>
+        <div class="container m-3" >
+     <div class="wrapper"  >
+   
+    <div class="title-text">
+        <div class="title login">
+            Login Form</div>
+        <div class="title signup">
+            Signup Form</div>
+    </div>
+    <div class="form-container">
+        <div class="slide-controls">
+            <input type="radio" name="slide" id="login" checked>
+            <input type="radio" name="slide" id="signup">
+            <label for="login" class="slide login">Login</label>
+            <label for="signup" class="slide signup">Signup</label>
+            <div class="slider-tab">
+            </div>
+        </div>
+
+
+        <!-- login    form-->
+        <div class="form-inner">
+            <form action="/login" method="POST" class="login">
+                {{#if loginErr}}
+                <p class="error" style="background: blanchedalmond;">{{loginErr}}</p>
+                {{/if}}
+                <div class="field">
+                   
+                    <input type="email" class="form-control" name="Email" placeholder="Enter Email">
+                </div>
+
+
+                <div class="field">
+                   
+                    <input type="password" class="form-control" name="Password" placeholder="Password">
+                </div><br>
+                {{!-- <div class="pass-link">
+                    <a href="#">Forgot password?</a></div> --}}
+                <div class="field btn">
+                    <div class="btn-layer">
+                    </div>
+                    <input type="submit" value="Login">
+                </div>
+                <div class="signup-link">
+                    Not a user? <a href="/signup">Signup now</a></div>
+            </form>
+
+ <!-- signup    form-->
+
+
+            <form action="/signup" method="POST" class="signup">
+                <div class="field">
+                  
+                    <input type="text" class="form-control" name="Name" placeholder="Enter Name">
+                </div>
+                <div class="field">
+                   
+                    <input type="email" class="form-control" name="Email" placeholder="Enter Email">
+                </div>
+                <div class="field">
+                    
+                    <input type="password" class="form-control" name="Password" placeholder="Password">
+                </div>
+
+                <div class="field btn">
+                    <div class="btn-layer">
+                    </div>
+                    <input type="submit" value="Signup">
+                </div>
+                  {{!-- <div class="signup-link">
+                    already have account ? <a id="login">Login now</a></div> --}}
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+           </div>
+    </div>
+  </div>  
+</div>
+
+<style>@import url('https://fonts.googleapis.com/css?family=Roboto');
+     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    *::selection {
+        background: #fa4299;
+        color: #fff;
+    }
+
+    .wrapper {
+        overflow: hidden;
+        max-width: 390px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper .title-text {
+        display: flex;
+        width: 200%;
+    }
+
+    .wrapper .title {
+        width: 50%;
+        font-size: 35px;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .wrapper .slide-controls {
+        position: relative;
+        display: flex;
+        height: 50px;
+        width: 100%;
+        overflow: hidden;
+        margin: 30px 0 10px 0;
+        justify-content: space-between;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+    }
+
+    .slide-controls .slide {
+        height: 100%;
+        width: 100%;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        text-align: center;
+        line-height: 48px;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.6s ease;
+    }
+
+    .slide-controls label.signup {
+        color: #000;
+    }
+
+    .slide-controls .slider-tab {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        left: 0;
+        z-index: 0;
+        border-radius: 5px;
+        background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    #signup:checked~.slider-tab {
+        left: 50%;
+    }
+
+    #signup:checked~label.signup {
+        color: #fff;
+        cursor: default;
+        user-select: none;
+    }
+
+    #signup:checked~label.login {
+        color: #000;
+    }
+
+    #login:checked~label.signup {
+        color: #000;
+    }
+
+    #login:checked~label.login {
+        cursor: default;
+        user-select: none;
+    }
+
+    .wrapper .form-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .form-container .form-inner {
+        display: flex;
+        width: 200%;
+    }
+
+    .form-container .form-inner form {
+        width: 50%;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .form-inner form .field {
+        height: 50px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .form-inner form .field input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        padding-left: 15px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        border-bottom-width: 2px;
+        font-size: 17px;
+        transition: all 0.3s ease;
+    }
+
+    .form-inner form .field input:focus {
+        border-color: #fc83bb;
+        /* box-shadow: inset 0 0 3px #fb6aae; */
+    }
+
+    .form-inner form .field input::placeholder {
+        color: #999;
+        transition: all 0.3s ease;
+    }
+
+    form .field input:focus::placeholder {
+        color: #b3b3b3;
+    }
+
+    .form-inner form .pass-link {
+        margin-top: 5px;
+    }
+
+    .form-inner form .signup-link {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .form-inner form .pass-link a,
+    .form-inner form .signup-link a {
+        color: #fa4299;
+        text-decoration: none;
+    }
+
+    .form-inner form .pass-link a:hover,
+    .form-inner form .signup-link a:hover {
+        text-decoration: underline;
+    }
+
+    form .btn {
+        height: 50px;
+        width: 100%;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    form .btn .btn-layer {
+        height: 100%;
+        width: 300%;
+        position: absolute;
+        left: -100%;
+        background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
+        border-radius: 5px;
+        transition: all 0.4s ease;
+        ;
+    }
+
+    form .btn:hover .btn-layer {
+        left: 0;
+    }
+
+    form .btn input[type="submit"] {
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        position: relative;
+        background: none;
+        border: none;
+        color: #fff;
+        padding-left: 0;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+ .close {
+  color: #fff;
+  transform: scale(1.2)
+}
+.modal-content {
+  font-weight: bold;
+  background: linear-gradient(to bottom right,#F87E7B,#B05574);
+}
+  header.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  
+
+}
+ .glow {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+body{
+	font-family: 'Roboto', sans-serif;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+i {
+	margin-right: 10px;
+  color: #fff;
+  border: #fff;
+  
+}
+/*----------multi-level-accordian-menu------------*/
+.navbar-logo{
+	padding: 15px;
+	color: #fff;
+}
+.navbar-mainbg{
+	background-color: #5161ce;
+	padding: 0px;
+}
+#navbarSupportedContent{
+	overflow: hidden;
+	position: relative;
+}
+#navbarSupportedContent ul{
+	padding: 0px;
+	margin: 0px;
+}
+#navbarSupportedContent ul li a i{
+	margin-right: 10px;
+}
+#navbarSupportedContent li {
+	list-style-type: none;
+	float: left;
+}
+#navbarSupportedContent ul li a{
+	color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding: 20px 20px;
+    transition-duration:0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+#navbarSupportedContent>ul>li.active>a{
+	color: #5161ce;
+	background-color: transparent;
+	transition: all 0.7s;
+}
+#navbarSupportedContent a:not(:only-child):after {
+	content: "\f105";
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	font-size: 14px;
+	font-family: "Font Awesome 5 Free";
+	display: inline-block;
+	padding-right: 3px;
+	vertical-align: middle;
+	font-weight: 900;
+	transition: 0.5s;
+}
+#navbarSupportedContent .active>a:not(:only-child):after {
+	transform: rotate(90deg);
+}
+.hori-selector{
+	display:inline-block;
+	position:absolute;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	transition-duration:0.6s;
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	background-color: #fff;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	margin-top: 10px;
+}
+.hori-selector .right,
+.hori-selector .left{
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	background-color: #fff;
+	bottom: 10px;
+}
+.hori-selector .right{
+	right: -25px;
+}
+.hori-selector .left{
+	left: -25px;
+}
+.hori-selector .right:before,
+.hori-selector .left:before{
+	content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #5161ce;
+}
+.hori-selector .right:before{
+	bottom: 0;
+    right: -25px;
+}
+.hori-selector .left:before{
+	bottom: 0;
+    left: -25px;
+}
+
+
+
+
+@media (max-width: 991px){
+	#navbarSupportedContent ul li a{
+		padding: 12px 30px;
+	}
+	.hori-selector{
+		margin-top: 0px;
+		margin-left: 10px;
+		border-radius: 0;
+		border-top-left-radius: 25px;
+		border-bottom-left-radius: 25px;
+	}
+	.hori-selector .left,
+	.hori-selector .right{
+		right: 10px;
+	}
+	.hori-selector .left{
+		top: -25px;
+		left: auto;
+	}
+	.hori-selector .right{
+		bottom: -25px;
+	}
+	.hori-selector .left:before{
+		left: -25px;
+		top: -25px;
+	}
+	.hori-selector .right:before{
+		bottom: -25px;
+		left: -25px;
+	}
+}</style>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>// ---------Responsive-navbar-active-animation-----------
+function test(){
+  var tabsNewAnim = $('#navbarSupportedContent');
+  var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+  var activeItemNewAnim = tabsNewAnim.find('.active');
+  var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+  var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+  var itemPosNewAnimTop = activeItemNewAnim.position();
+  var itemPosNewAnimLeft = activeItemNewAnim.position();
+  $(".hori-selector").css({
+    "top":itemPosNewAnimTop.top + "px", 
+    "left":itemPosNewAnimLeft.left + "px",
+    "height": activeWidthNewAnimHeight + "px",
+    "width": activeWidthNewAnimWidth + "px"
+  });
+  $("#navbarSupportedContent").on("click","li",function(e){
+    $('#navbarSupportedContent ul li').removeClass("active");
+    $(this).addClass('active');
+    var activeWidthNewAnimHeight = $(this).innerHeight();
+    var activeWidthNewAnimWidth = $(this).innerWidth();
+    var itemPosNewAnimTop = $(this).position();
+    var itemPosNewAnimLeft = $(this).position();
+    $(".hori-selector").css({
+      "top":itemPosNewAnimTop.top + "px", 
+      "left":itemPosNewAnimLeft.left + "px",
+      "height": activeWidthNewAnimHeight + "px",
+      "width": activeWidthNewAnimWidth + "px"
+    });
+  });
+}
+$(document).ready(function(){
+  setTimeout(function(){ test(); });
+});
+$(window).on('resize', function(){
+  setTimeout(function(){ test(); }, 500);
+});
+$(".navbar-toggler").click(function(){
+  setTimeout(function(){ test(); });
+});</script>
+<script>  const loginText = document.querySelector(".title-text .login");
+    const loginForm = document.querySelector("form.login");
+    const loginBtn = document.querySelector("label.login");
+    const signupBtn = document.querySelector("label.signup");
+    const signupLink = document.querySelector("form .signup-link a");
+    signupBtn.onclick = (() => {
+        loginForm.style.marginLeft = "-50%";
+        loginText.style.marginLeft = "-50%";
+    });
+    loginBtn.onclick = (() => {
+        loginForm.style.marginLeft = "0%";
+        loginText.style.marginLeft = "0%";
+    });
+    signupLink.onclick = (() => {
+        signupBtn.click();
+        return false;
+    });</script>
+
+
+
+ <li class="nav-item active">
+          <a class="nav-link" href="/"> PRODUCTS <span class="sr-only">(current)</span></a>
+        </li>
+        {{#if user}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/orders"> ORDERS</a>
+        </li>
+
+        {{else}}
+
+        {{/if}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span>CART
+            <span class="badge" id="cart-count" style="margin-top: -40px;">{{cartCount}}</span></a>
+        </li>
+            {{!-- <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li> --}}
+            {{#if user}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a>  
+                
+              </div>
+            </li>
+            {{else}}
+               <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-log-in"></span> Log in
+                
+              </a>
+              
+            {{/if}}
+            {{!-- xfgbtr,loghdklhnkfgbgkdfbgkdhgilnduf dkupnakupk';ojkdfhadm,amd;akp; --}}
+
+
+
+
+
+
+
+
+            
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<header class="bg-dark" style="margin-bottom: -10px;">
+  <div class="row text-white">
+    <div class="col-md-6">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand glow " href="/">SHOPPING CART</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-top: -35px;">
+    <ul class="navbar-nav">
+      <li class="navbar-brand active">
+          <a class="nav-link" href="/"> PRODUCTS <span class="sr-only">(current)</span></a>
+        </li>
+        {{#if user}}
+        <li class="navbar-brand active">
+          <a class="nav-link" href="/orders"> ORDERS</a>
+        </li>
+
+        {{else}}
+
+        {{/if}}
+        <li class="navbar-brand active">
+          <a class="nav-link" href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span>CART
+            <span class="badge" id="cart-count" style="margin-top: -40px;">{{cartCount}}</span></a>
+        </li>
+            {{!-- <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li> --}}
+            
+            {{#if user}}
+            <li class="navbar-brand dropdown glow">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{user.Name}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="nav-link" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a>  
+                <a class="dropdown-item" href="#"><span class="glyphicon glyphicon-log-out"></span> account</a>  
+                
+              </div>
+            </li>
+            {{else}}
+               <li class="navbar-brand dropdown">
+              <a class="nav-link dropdown-toggle" href="/login" ><span class="glyphicon glyphicon-log-in"></span> Log in
+                
+              </a>
+              
+            {{/if}}
+    </ul>
+  </div>
+</nav>
+    </div>
+    
+
+  </div>
+
+</header>
+
+<style>
+  
+   .glow {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }
+  
+</style> 
+ 
+
